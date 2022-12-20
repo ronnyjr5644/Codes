@@ -2,7 +2,7 @@ class Solution {
 public:
     int dp[201][201];
     int dfs(vector<vector<int>>& mat,int i,int j,int x){
-        if(i<0 || j<0 || i==mat.size() || j==mat[0].size()|| x>=mat[i][j]){
+        if(i<0 || j<0 || i>=mat.size() || j>=mat[0].size()|| x>=mat[i][j]){
             return 0;
         }
         if(dp[i][j]!=-1){
@@ -12,7 +12,7 @@ public:
     }
     int longestIncreasingPath(vector<vector<int>>& matrix) {
         memset(dp,-1,sizeof(dp));
-        int res=0;
+        int res=INT_MIN;
         for(int i=0;i<matrix.size();i++){
             for(int j=0;j<matrix[0].size();j++){
                 res=max(dfs(matrix,i,j,-1),res);     
