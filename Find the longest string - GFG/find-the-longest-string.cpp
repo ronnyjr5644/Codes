@@ -11,25 +11,52 @@ using namespace std;
 class Solution
 {
 public:
-    string longestString(vector<string> &words)
-    {
-       sort(words.begin(),words.end());
-        string result;
-        for (string s:words){
-            bool isPrefixPresent=true;
-            for (int i=1;i<s.size();i++){
-                 if (!binary_search(words.begin(),words.end(),s.substr(0,i))){
-                    isPrefixPresent=false;
-                     break;
-                }
-             }
-            if (isPrefixPresent && s.size() > result.size()){
-                result=s;
-            }
+struct Trie {
+  bool isTerminal;
+  Trie* children[26];
+  Trie() {
+    isTerminal = false;
+    memset(children, 0, sizeof(children));
+  }
+};
+    Trie * root = new Trie();
+    string longestString(vector<string> &words){
+       for(auto i : words)
+       Insert(i);
+       string ans ;
+       queue<pair<Trie *, string> > q;
+       q.push({root, ""});
+       while(!q.empty()){
+           int size = q.size();
+           ans = q.front().second;
+           for(int k =  0 ; k<size ; k++){
+               Trie * front  = q.front().first;
+               string s = q.front().second;               for(int i = 0 ; i<26 ; i++){
+                   if(front->children[i] && front->children[i]->isTerminal){
+                       s.push_back('a'+i);
+                       q.push({front->children[i], s});
+                       s.pop_back();
+                   }
+               }
+               
+               q.pop();
+           }
+       }    
+       return ans;
+    }
+     void Insert(string &word){
+        Trie * temp = root;
+        for(int i = 0 ; i<word.length() ; i++){
+           if(temp->children[word[i]-'a'] == NULL){
+               temp->children[word[i]-'a'] = new Trie();
+           }
+           
+           temp = temp->children[word[i]-'a'] ;
         }
-        return result;
+        temp->isTerminal = true;
     }
 };
+
 
 //{ Driver Code Starts.
 
