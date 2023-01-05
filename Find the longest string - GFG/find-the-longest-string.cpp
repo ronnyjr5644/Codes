@@ -14,32 +14,20 @@ public:
     string longestString(vector<string> &words)
     {
        sort(words.begin(), words.end());
-
-    // Resultant string
-    string result;
-
-    // Iterate through the sorted array
-    for (string s : words)
-    {
-        // Check if all of the prefixes of s are present in the array
-        bool isPrefixPresent = true;
-        for (int i = 1; i < s.size(); i++)
-        {
-            if (!binary_search(words.begin(), words.end(), s.substr(0, i)))
-            {
-                isPrefixPresent = false;
-                break;
+        string result;
+        for (string s : words){
+            bool isPrefixPresent = true;
+            for (int i = 1; i < s.size(); i++){
+                 if (!binary_search(words.begin(), words.end(), s.substr(0, i))){
+                    isPrefixPresent = false;
+                     break;
+                }
+             }
+            if (isPrefixPresent && s.size() > result.size()){
+                result = s;
             }
         }
-
-        // If all prefixes of s are present, update the result if s is longer than the current result
-        if (isPrefixPresent && s.size() > result.size())
-        {
-            result = s;
-        }
-    }
-
-    return result;
+        return result;
     }
 };
 
