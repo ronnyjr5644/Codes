@@ -13,18 +13,18 @@ class Solution
 public:
     string longestString(vector<string> &words)
     {
-       sort(words.begin(), words.end());
+       sort(words.begin(),words.end());
         string result;
-        for (string s : words){
-            bool isPrefixPresent = true;
-            for (int i = 1; i < s.size(); i++){
-                 if (!binary_search(words.begin(), words.end(), s.substr(0, i))){
-                    isPrefixPresent = false;
+        for (string s:words){
+            bool isPrefixPresent=true;
+            for (int i=1;i<s.size();i++){
+                 if (!binary_search(words.begin(),words.end(),s.substr(0,i))){
+                    isPrefixPresent=false;
                      break;
                 }
              }
             if (isPrefixPresent && s.size() > result.size()){
-                result = s;
+                result=s;
             }
         }
         return result;
