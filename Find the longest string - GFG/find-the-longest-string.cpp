@@ -31,7 +31,8 @@ struct Trie {
            ans = q.front().second;
            for(int k =  0 ; k<size ; k++){
                Trie * front  = q.front().first;
-               string s = q.front().second;               for(int i = 0 ; i<26 ; i++){
+               string s = q.front().second;               
+               for(int i = 0 ; i<26 ; i++){
                    if(front->children[i] && front->children[i]->isTerminal){
                        s.push_back('a'+i);
                        q.push({front->children[i], s});
