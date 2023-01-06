@@ -7,40 +7,55 @@ using namespace std;
 //User function Template for C++
 class Solution{   
   public:
+   bool isPrime(int n) {
+        if(n==0 or n==1) return false;
+        
+        for(int i=2;i<=sqrt(n);i++) {
+            if(n%i == 0) return false;
+        }
+        
+        return true;
+    }
     int shortestPath(int Num1,int Num2)
     {   
-  queue<pair<int, int>> q;
-  q.push({Num1, 0});
-  unordered_set<int> st;
-  st.insert(Num1);
-  bool prime[10000];
-  memset(prime, 1, sizeof(prime));
-  for (int p = 2; p * p <= 9999; p++) {
-    if (prime[p] == true) {
-      for (int i = p * p; i <= 9999; i += p)
-        prime[i] = false;
-    }
-  }
-  while (!q.empty()) {
-    int num = q.front().first;
-    int dist = q.front().second;
-    q.pop();
-    if (num == Num2) {
-      return dist;
-    }
-    for (int i = 1; i <= 4; i++) {
-      for (int d = 0; d <= 9; d++) {
-        int placeValue = pow(10, 4 - i);
-        int digit = (num / placeValue) % 10;
-        int newNum = num - digit * placeValue + d * placeValue;
-        if (st.find(newNum) == st.end() && prime[newNum] == true && newNum > 999 && newNum < 10000) {
-          q.push({newNum, dist + 1});
-          st.insert(newNum);
+        string s1 = to_string(Num1);
+        string s2 = to_string(Num2);
+        
+        queue<pair<string,int>>q;
+        q.push({s1, 0});
+        vector<int> vis(1e5);
+        
+        while(!q.empty()) {
+            string word = q.front().first;
+            int steps = q.front().second;
+            q.pop();
+            
+            vis[stoi(word)] = 1;
+            
+            if(word == s2) return steps;
+            
+            for(int i=0;i<word.size();i++) {
+                char ch = word[i];
+                
+                for(int j=0;j<10;j++) {
+                    if(i == 0 and j == 0) continue;
+                    
+                    word[i] = char(j + '0');
+                    int val = stoi(word);
+                    
+                    if(isPrime(val) and !vis[val]){
+                        vis[val] = 1;
+                        q.push({word, steps+1});
+                    } 
+                
+                    
+                }
+                
+                word[i] = ch;
+            }
         }
-      }
-    }
-  }
-  return -1;
+        
+        return -1;
     }
 };
 
