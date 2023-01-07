@@ -46,30 +46,40 @@ struct Node{
 
 class Solution {
 public:
-    Node* solve(Node* n1,Node* n2){
-        if(n1==NULL){
-            return n2;
-        }
-        if(n2==NULL){
-            return n1;
-        }
-        Node* temp;
-        if(n1->data<=n2->data){
-            temp=n1;
-            temp->bottom=solve(n1->bottom,n2);
-        }
-        else{
-            temp=n2;
-            temp->bottom=solve(n1,n2->bottom);
-        }
-        return temp;
-    }
     Node *flatten(Node *root)
     {
-        if(root==NULL || root->next==NULL){
-            return root;
-        }
-        return solve(root,flatten(root->next));
+        if (root == NULL) {
+            return NULL;
+  }
+
+  Node *next_node = flatten(root->next);
+  Node *current_node = root;
+
+  Node *dummy = new Node(-1);
+  Node *current_output_node = dummy;
+
+  while ((next_node != NULL) && (current_node != NULL)) {
+    Node *next_bottom_node = next_node->bottom;
+    Node *current_bottom_node = current_node->bottom;
+
+    if (next_node->data <= current_node->data) {
+      current_output_node->bottom = next_node;
+      current_output_node = next_node;
+      next_node = next_bottom_node;
+    } else {
+      current_output_node->bottom = current_node;
+      current_output_node = current_node;
+      current_node = current_bottom_node;
+    }
+  }
+
+  if (next_node == NULL) {
+    current_output_node->bottom = current_node;
+  } else {
+    current_output_node->bottom = next_node;
+  }
+  return dummy->bottom;
+        // Your code a
     }
 };
 
