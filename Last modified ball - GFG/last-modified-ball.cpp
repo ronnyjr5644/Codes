@@ -10,10 +10,16 @@ using namespace std;
 class Solution {
   public:
     int solve(int N, vector<int> A) {
-        while(A[N-1]==9){
-           N--;
+        for (int i=N-1;i>=0;i--){
+        if(A[i]<9){
+            A[i]++;
+            return i+1;
         }
-        return N;
+        else{
+            A[i]=0;
+        }
+    }
+   
     }
 };
 
