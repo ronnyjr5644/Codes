@@ -107,22 +107,25 @@ class Solution {
   
     // Convert a given tree to a tree where every node contains sum of values of
     // nodes in left and right subtrees in the original tree
-    int solve(Node* root){
-        if(root==nullptr){
-            return 0;
-        }
-        if(root->left==nullptr && root->right==nullptr){
-            int temp=root->data;
-            root->data=0;
-            return temp;
-        }
-        int x=root->data;
-        root->data=solve(root->left)+solve(root->right);
-        return x+root->data;
+    int dfs2(Node* node){
+        if(node) return node->data + dfs2(node->left) + dfs2(node->right);
+        return 0;
+
     }
-    void toSumTree(Node *node){
-       solve(node);
+    void dfs3(Node* node){
+        if(node){
+            node->data =  dfs2(node) - node->data;
+            dfs3(node->left);
+            dfs3(node->right);
+        }
     }
+
+    void toSumTree(Node *node)
+    {
+        dfs3(node);
+
+    }
+
 };
 
 //{ Driver Code Starts.
