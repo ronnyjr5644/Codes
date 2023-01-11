@@ -8,7 +8,7 @@ public:
                 depth=depth+solve(ch,adj,hasApple,vis);
             }
         }
-        return (depth || hasApple[node])?depth+1:0;
+        return (depth!=0 || hasApple[node]!=0)?depth+1:0;
     }
     int minTime(int n, vector<vector<int>>& edges, vector<bool>& hasApple) {
         vector<vector<int>>adj(n);
