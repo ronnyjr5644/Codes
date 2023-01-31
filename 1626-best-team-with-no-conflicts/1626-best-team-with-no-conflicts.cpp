@@ -1,6 +1,6 @@
 class Solution {
 public:
-     int dp[1005][1005];
+     int dp[1001][1001];
      int recur(vector<vector<int>>&grp , int i , int n , int maxiAge){
         if(i==n)
             return 0;
