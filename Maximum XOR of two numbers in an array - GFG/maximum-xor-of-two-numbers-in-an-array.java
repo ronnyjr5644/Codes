@@ -37,9 +37,9 @@ class Solution
 {
     public static int max_xor(int arr[], int n)
     {
-          int max=0;
-        for (int i=0 ;i<arr.length;i++){
-            for (int j=0;j<arr.length&&i!=j;j++){
+        int max=0;
+        for (int i=0 ;i<n;i++){
+            for (int j=i+1;j<n;j++){
                 max=Math.max(arr[i]^arr[j],max);
             }
         }
