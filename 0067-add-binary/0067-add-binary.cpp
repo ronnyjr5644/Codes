@@ -1,8 +1,13 @@
 class Solution {
 public:
     string addBinary(string a, string b) {
-        if(b.size() > a.size()) swap(a,b);
+        
+        if(b.size() < a.size()){
         while(b.size() < a.size()) b = "0" + b;
+        }
+        else{
+            while(a.size() < b.size()) a = "0" + a;
+        }
         int carry = 0;
         string res = "";
         for(int i = b.size()-1; i >= 0 ; --i){
