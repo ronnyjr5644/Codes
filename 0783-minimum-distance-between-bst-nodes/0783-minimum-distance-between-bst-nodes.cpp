@@ -15,17 +15,18 @@ public:
 
      void dfs(TreeNode* node){ //dfs traversal
          if(node==NULL) return;
-         store.push_back(node->val);
-         dfs(node->left);       //left call
-         dfs(node->right);      //right call
+      
+         dfs(node->left); 
+        store.push_back(node->val);
+         dfs(node->right);     
       } 
 
 
     int minDiffInBST(TreeNode* root) {
-        dfs(root);             //function calling
-        sort(store.begin(),store.end());
+        dfs(root);            
+      
         int result=INT_MAX;  
-        for(int i=0;i+1<store.size();++i){  //finding two no such that their differnce is minimum
+        for(int i=0;i+1<store.size();++i){  
              if(store[i+1]-store[i]<result){
                 result=store[i+1]-store[i];
              }
