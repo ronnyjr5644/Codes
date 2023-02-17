@@ -26,7 +26,7 @@ public:
         dfs(root);            
       
         int result=INT_MAX;  
-        for(int i=0;i+1<store.size();++i){  
+        for(int i=0;i<store.size()-1;++i){  
              if(store[i+1]-store[i]<result){
                 result=store[i+1]-store[i];
              }
