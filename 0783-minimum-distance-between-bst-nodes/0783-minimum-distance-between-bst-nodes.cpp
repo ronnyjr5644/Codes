@@ -31,7 +31,7 @@ public:
                 result=store[i+1]-store[i];
              }
         }
-        return result;;
+        return result;
         
     }
 };
