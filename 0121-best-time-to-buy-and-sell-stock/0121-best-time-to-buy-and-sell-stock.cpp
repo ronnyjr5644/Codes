@@ -1,11 +1,23 @@
 class Solution {
 public:
     int maxProfit(vector<int>& prices) {
-         int maxCur = 0, maxSoFar = 0;
-        for(int i = 1; i < prices.size(); i++) {
-            maxCur = max(0, maxCur += prices[i] - prices[i-1]);
-            maxSoFar = max(maxCur, maxSoFar);
+         priority_queue<int, vector<int>, greater<int> > minPrice;
+        
+        minPrice.push(INT_MAX);
+        
+        int MaxProfit=0;
+        
+        for(auto& curr : prices)
+        {
+            minPrice.push(curr);
+            
+            if(curr> minPrice.top())
+            {   
+                
+                MaxProfit = max( MaxProfit, curr-minPrice.top() );
+            }
         }
-        return maxSoFar;
+        
+        return MaxProfit;
     }
 };
