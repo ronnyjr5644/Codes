@@ -10,8 +10,7 @@ public:
             string str=haystack.substr(i,needle.size());
             if(str==needle){
                 return i;
-            }
-            
+            }    
         }
         return -1;
     }
