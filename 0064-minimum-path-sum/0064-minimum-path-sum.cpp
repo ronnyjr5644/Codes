@@ -9,11 +9,8 @@ public:
             return 1e8;
         }
         if(dp[i][j] != -1) return dp[i][j];
-        int a = fun(gr,i+1,j);
-        int b = fun(gr,i,j+1);
-        return dp[i][j] = gr[i][j] + min(a,b);
+        return dp[i][j] = gr[i][j] + min(fun(gr,i+1,j), fun(gr,i,j+1));
     }
-
     int minPathSum(vector<vector<int>>& gr) {
         memset(dp,-1,sizeof(dp));
         return fun(gr,0,0);
