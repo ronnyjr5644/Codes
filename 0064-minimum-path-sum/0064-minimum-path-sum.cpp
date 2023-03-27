@@ -6,7 +6,7 @@ public:
             return gr[i][j];
         }
         if(i==gr.size() || j==gr[0].size()){
-            return 1e8;
+            return INT_MAX;
         }
         if(dp[i][j] != -1) return dp[i][j];
         return dp[i][j] = gr[i][j] + min(fun(gr,i+1,j), fun(gr,i,j+1));
