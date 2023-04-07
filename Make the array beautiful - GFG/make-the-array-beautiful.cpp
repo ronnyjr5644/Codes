@@ -11,13 +11,18 @@ using namespace std;
 class Solution {
   public:
    bool function(int a, int b) {
-        if((a < 0 && b < 0) || (a >= 0 && b >= 0)) return false;
-        return true;
+        if( (a >= 0 && b >= 0) || (a < 0 && b < 0)){
+            return false;
+        } 
+        else{
+           return true; 
+        }
+        
     }
     vector<int> makeBeautiful(vector<int> arr) {
         stack<int>st;
         for(int i=0;i<arr.size();i++){
-            if (!st.empty() && function(st.top(), arr[i]))
+            if (st.empty()==0 && function(st.top(), arr[i]))
                 st.pop();
             else
                 st.push(arr[i]);
