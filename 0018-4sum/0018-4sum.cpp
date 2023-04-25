@@ -1,8 +1,6 @@
 
-        typedef long long ll;
+typedef long long ll;
 
-
-// Bruteforce | O(n^4) time | O(n) space
 class Solution {
 public:
     vector<vector<int>> fourSum(vector<int> &nums, int target) {
