@@ -9,10 +9,10 @@ class Solution {
   public:
     long long countBits(long long N) {
         long long sum=0;
-    for (int i = 1; i <= N; ++i) {
-        sum += __builtin_popcount(i);
+        for (int i = 1; i <= N; ++i) {
+            sum += __builtin_popcount(i);
         }
-    return sum;
+        return sum;
     }
 };
 
