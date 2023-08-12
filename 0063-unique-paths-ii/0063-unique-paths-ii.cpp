@@ -1,7 +1,7 @@
 class Solution {
 public:
-     int n, m;
-    int dp[101][101];
+      int n, m;
+    vector<vector<long long>> dp;
     long long numsPaths(int i, int j, vector<vector<int>>& obstacleGrid)
     {       
         if (dp[i][j]!=-1) return dp[i][j];
@@ -15,7 +15,7 @@ public:
     int uniquePathsWithObstacles(vector<vector<int>>& obstacleGrid) {
         n=obstacleGrid.size();
         m=obstacleGrid[0].size();
-        memset(dp,-1,sizeof(dp));
+        dp.assign(n, vector<long long>(m, -1));
 
         return numsPaths(n-1, m-1, obstacleGrid);
     }
