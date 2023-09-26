@@ -7,7 +7,6 @@ public:
 
         for (char c : s)
             freq[c-'a']++;
-
         deque<char> ans;
         int n = s.size();
         for (int i = 0; i < n; i++) {
