@@ -11,7 +11,7 @@ class Solution{
     // arr[] : int input array of integers
     // k : the quadruple sum required
     vector<vector<int> > fourSum(vector<int> &arr, int k) {
-            vector<vector<int>> ans;
+        vector<vector<int>> ans;
         int n=arr.size();
         int p,q;
         sort(arr.begin(),arr.end());
