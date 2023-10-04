@@ -1,10 +1,10 @@
 class MyHashMap {
-public:
-    int mp[1000001];    
-
+public:  
+int mp[1000001];
     MyHashMap() {
-        for (int i = 0; i < 1000001; ++i) {
-            mp[i] = -1;
+       
+        for(int i=0;i<1000001;++i){
+            mp[i]=-1;
         }
     }
     
