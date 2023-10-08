@@ -4,9 +4,7 @@ public:
         if (i == nums1.size() || j == nums2.size()) return INT_MIN;
         if (dp[i][j] != -1) return dp[i][j];
         int res = INT_MIN;
-        res = max(res, max(solve(i + 1, j + 1), 0) + nums1[i] * nums2[j]);
-        res = max(res, solve(i + 1, j));
-        res = max(res, solve(i, j + 1));
+        res = max({res, max(solve(i + 1, j + 1), 0) + nums1[i] * nums2[j],solve(i + 1, j),solve(i, j + 1)});
         return dp[i][j] = res;
     }
      int dp[501][501];
